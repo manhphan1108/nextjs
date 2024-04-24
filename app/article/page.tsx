@@ -18,19 +18,19 @@ export default function ArticlePage() {
     });
   }, []);
 
-  const config = {
-    maxCount: 1,
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteArticles(id);
+      setArticle(article?.filter((article: ArticelType) => article.id !== id));
+      notification.success({
+        message: "Delete article successfully"
+      })
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleDelete = async (id: number) => {
-    await deleteArticles(id);
-    setArticle(article?.filter((article: ArticelType) => article.id !== id));
-    notification.success({
-      message: "Delete article successfully"
-    })
-  };
-
-  const actions = (id: number) => [
+  const actions = (id: string) => [
     <Link as={`/article/edit/${id}`} href={`/article/edit/${id}`} ><EditOutlined type="message" style={{ fontSize: '22px', color: 'rgb(235 165 0)', cursor: 'pointer' }} /></Link>,
     <DeleteOutlined onClick={() => handleDelete(id)} type="message" style={{ fontSize: '22px', color: '#ff0000', cursor: 'pointer' }} />,
   ];

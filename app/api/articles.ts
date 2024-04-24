@@ -30,7 +30,7 @@ export const updaterticles = async (id: string, item: ArticelType) => {
   }
 };
 
-export const deleteArticles = async (id: number) => {
+export const deleteArticles = async (id: string) => {
   try {
     const { data } = await instance.delete(`${id}`);
     return data;

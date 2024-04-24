@@ -14,12 +14,8 @@ interface IFormInput {
   image?: string
   description?: string
 }
-interface params {
-  id: string
-}
 
 const addArticle = ({ id }: { id: string }) => {
-  console.log(id);
   const { control, handleSubmit, formState: { errors }, reset } = useForm<IFormInput>();
   const router = useRouter();
   console.log(errors);
